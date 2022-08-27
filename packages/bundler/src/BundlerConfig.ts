@@ -9,6 +9,7 @@ export interface BundlerConfig {
   minBalance: string
   mnemonic: string
   network: string
+  host: string
   port: string
 }
 
@@ -21,13 +22,15 @@ export const BundlerConfigShape = {
   minBalance: ow.string,
   mnemonic: ow.string,
   network: ow.string,
-  port: ow.string
+  port: ow.string,
+  host: ow.string
 }
 
 // TODO: consider if we want any default fields at all
 // TODO: implement merging config (args -> config.js -> default) and runtime shape validation
 export const bundlerConfigDefault: Partial<BundlerConfig> = {
   port: '3000',
+  host: '0.0.0.0',
   helper: '0xdD747029A0940e46D20F17041e747a7b95A67242',
   entryPoint: '0x602aB3881Ff3Fa8dA60a8F44Cf633e91bA1FdB69'
 }

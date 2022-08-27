@@ -20,7 +20,7 @@ ethers.BigNumber.prototype[inspectCustomSymbol] = function () {
   return `BigNumber ${parseInt(this._hex)}`
 }
 
-const CONFIG_FILE_NAME = 'workdir/bundler.config.json'
+const CONFIG_FILE_NAME = './bundler.config.json'
 
 program
   .version(erc4337RuntimeVersion)
@@ -32,6 +32,7 @@ program
   .option('--helper <string>', 'address of the BundlerHelper contract')
   .option('--entryPoint <string>', 'address of the supported EntryPoint contract')
   .option('--port <number>', 'server listening port (default to 3000)')
+  .option('--host <string>', 'server listening port (default to localhost)')
   .option('--config <string>', `path to config file (default to ${CONFIG_FILE_NAME})`, CONFIG_FILE_NAME)
   .parse()
 

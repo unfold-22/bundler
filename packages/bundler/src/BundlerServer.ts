@@ -30,7 +30,7 @@ export class BundlerServer {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     this.app.post('/rpc', this.rpc.bind(this))
 
-    this.app.listen(this.config.port)
+    this.app.listen(Number(this.config.port), this.config.host, 5, () => {})
   }
 
   async preflightCheck (): Promise<void> {
@@ -63,6 +63,7 @@ export class BundlerServer {
       console.log('sent', method, '-', result)
       res.send({ jsonrpc, id, result })
     } catch (err: any) {
+      console.log(err)
       const error = { message: err.error?.reason ?? err.error.message ?? err, code: -32000 }
       console.log('failed: ', method, JSON.stringify(error))
       res.send({ jsonrpc, id, error })
