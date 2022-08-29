@@ -7,11 +7,11 @@ import fs from 'fs'
 import { HardhatUserConfig } from 'hardhat/config'
 import { NetworkUserConfig } from 'hardhat/src/types/config'
 
-const mnemonicFileName = process.env.MNEMONIC_FILE
-let mnemonic = 'test '.repeat(11) + 'junk'
-if (mnemonicFileName != null && fs.existsSync(mnemonicFileName)) {
+const privateKeyFileName = process.env.PRIVATE_KEY_FILE
+let privateKey = 'test '.repeat(11) + 'junk'
+if (privateKeyFileName != null && fs.existsSync(privateKeyFileName)) {
   console.warn('Hardhat does not seem to ')
-  mnemonic = fs.readFileSync(mnemonicFileName, 'ascii').replace(/(\r\n|\n|\r)/gm, '')
+  privateKey = fs.readFileSync(privateKeyFileName, 'ascii').replace(/(\r\n|\n|\r)/gm, '')
 }
 
 const infuraUrl = (name: string): string => `https://${name}.infura.io/v3/${process.env.INFURA_ID}`
@@ -19,9 +19,7 @@ const infuraUrl = (name: string): string => `https://${name}.infura.io/v3/${proc
 function getNetwork (url: string): NetworkUserConfig {
   return {
     url,
-    accounts: {
-      mnemonic
-    }
+    accounts: [privateKey]
   }
 }
 
@@ -38,7 +36,11 @@ const config: HardhatUserConfig = {
     localhost: {
       url: 'http://localhost:8545/'
     },
-    goerli: getInfuraNetwork('goerli')
+    goerli: getInfuraNetwork('goerli'),
+    mumbai: {
+      url: 'https://polygon-mumbai.g.alchemy.com/v2/ftxADEn4GBca7w-Bq4pM1N9Nyq4XHAGe',
+      accounts: [privateKey]
+    }
   },
   solidity: {
     version: '0.8.15',

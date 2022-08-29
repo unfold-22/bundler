@@ -1,4 +1,4 @@
-import { BigNumber, Wallet } from 'ethers'
+import { BigNumber, Wallet, utils } from 'ethers'
 import { JsonRpcSigner, Provider } from '@ethersproject/providers'
 import { UserOperation } from '@erc4337/common/dist/src/UserOperation'
 
@@ -35,7 +35,7 @@ export class UserOpMethodHandler {
       throw new Error(`The EntryPoint at "${entryPointInput}" is not supported. This bundler uses ${this.config.entryPoint}`)
     }
 
-    console.log(`UserOperation: Sender=${userOp.sender} EntryPoint=${this.config.entryPoint} Paymaster=${userOp.paymaster}`)
+    console.log(`UserOperation: Sender=${userOp.sender} EntryPoint=${this.config.entryPoint} Paymaster=${userOp.paymaster}`, userOp)
 
     const beneficiary = await this.selectBeneficiary()
     const requestId = await this.entryPoint.getRequestId(userOp)

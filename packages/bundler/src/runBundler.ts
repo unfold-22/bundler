@@ -47,7 +47,7 @@ export function resolveConfiguration (): BundlerConfig {
     fileConfig = JSON.parse(fs.readFileSync(configFileName, 'ascii'))
   }
   const mergedConfig = Object.assign({}, bundlerConfigDefault, fileConfig, commandLineParams)
-  console.log('Merged configuration:', JSON.stringify(mergedConfig))
+  //   console.log('Merged configuration:', JSON.stringify(mergedConfig))
   ow(mergedConfig, ow.object.exactShape(BundlerConfigShape))
   return mergedConfig
 }
@@ -78,7 +78,7 @@ export async function connectContracts (
 async function main (): Promise<void> {
   const config = resolveConfiguration()
   const provider: BaseProvider = ethers.getDefaultProvider(config.network)
-  const wallet: Wallet = Wallet.fromMnemonic(config.mnemonic).connect(provider)
+  const wallet: Wallet = new Wallet(config.private_key).connect(provider)
 
   const { entryPoint, bundlerHelper } = await connectContracts(wallet, config.entryPoint, config.helper)
 

@@ -82,6 +82,7 @@ export class BundlerServer {
         result = await this.methodHandler.getSupportedEntryPoints()
         break
       case 'eth_sendUserOperation':
+        // userOperations & entryPoint contract
         result = await this.methodHandler.sendUserOperation(params[0], params[1])
         break
       default:
