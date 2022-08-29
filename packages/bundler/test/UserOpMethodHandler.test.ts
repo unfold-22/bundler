@@ -64,9 +64,10 @@ describe('UserOpMethodHandler', function () {
       gasFactor: '0.2',
       helper: bundleHelper.address,
       minBalance: '0',
-      mnemonic: '',
+      private_key: '',
       network: '',
-      port: '3000'
+      port: '3000',
+      host: '0.0.0.0'
     }
 
     methodHandler = new UserOpMethodHandler(

@@ -28,7 +28,7 @@ program
   .option('--gasFactor <number>')
   .option('--minBalance <number>', 'below this signer balance, keep fee for itself, ignoring "beneficiary" address ')
   .option('--network <string>', 'network name or url')
-  .option('--mnemonic <string>', 'signer account secret key mnemonic')
+  .option('--private_key <string>', 'signer account secret key mnemonic')
   .option('--helper <string>', 'address of the BundlerHelper contract')
   .option('--entryPoint <string>', 'address of the supported EntryPoint contract')
   .option('--port <number>', 'server listening port (default to 3000)')

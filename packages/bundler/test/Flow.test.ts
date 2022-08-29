@@ -25,7 +25,7 @@ export async function startBundler (options: BundlerConfig): Promise<ChildProces
   args.push('--gasFactor', options.gasFactor)
   args.push('--helper', options.helper)
   args.push('--minBalance', options.minBalance)
-  args.push('--mnemonic', options.private_key)
+  args.push('--private_key', options.private_key)
   args.push('--network', options.network)
   args.push('--port', options.port)
   const runServerPath = path.resolve(__dirname, '../dist/src/runBundler.js')
@@ -101,9 +101,10 @@ describe('Flow', function () {
       helper: bundleHelper.address,
       gasFactor: '0.2',
       minBalance: '0',
-      mnemonic: 'myth like bonus scare over problem client lizard pioneer submit female collect',
+      private_key: 'myth like bonus scare over problem client lizard pioneer submit female collect',
       network: 'http://localhost:8545/',
-      port: '5555'
+      port: '5555',
+      host: '0.0.0.0'
     })
   })
 
