@@ -25,7 +25,7 @@ export async function startBundler (options: BundlerConfig): Promise<ChildProces
   args.push('--gasFactor', options.gasFactor)
   args.push('--helper', options.helper)
   args.push('--minBalance', options.minBalance)
-  args.push('--mnemonic', options.mnemonic)
+  args.push('--mnemonic', options.private_key)
   args.push('--network', options.network)
   args.push('--port', options.port)
   const runServerPath = path.resolve(__dirname, '../dist/src/runBundler.js')
